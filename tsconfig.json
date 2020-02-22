@@ -1,0 +1,9 @@
+{
+    "files": [
+        "type.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "ES5"
+    }
+}
