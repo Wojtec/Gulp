@@ -18,7 +18,9 @@
   "homepage": "https://github.com/Wojtec/Gulp#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
+    "node-sass": "^4.13.1",
     "typescript": "^3.8.2"
   }
 }

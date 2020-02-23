@@ -1,0 +1,14 @@
+@mixin backG($color,$width,$height) {
+    
+    background-color: $color;
+    width: $width;
+    height: $height;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#content{
+    @include backG(rgb(123,42,43), 50%,100px);
+}
