@@ -1,0 +1,8 @@
+#content {
+  background-color: #7b2a2b;
+  width: 50%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto; }

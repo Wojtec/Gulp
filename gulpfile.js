@@ -1,15 +1,22 @@
-let gulp = require('gulp');
-let ts = require('gulp-typescript');
-let tsProject = ts.createProject('tsconfig.json');
-let sass = require('gulp-sass');
-let autoprefixer = require('gulp-autoprefixer');
-let cleanCss = require('gulp-clean-css');
-let rename = require('gulp-rename');
+const gulp = require('gulp');
+const ts = require('gulp-typescript');
+const tsProject = ts.createProject('tsconfig.json');
+const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const cleanCss = require('gulp-clean-css');
+const rename = require('gulp-rename');
+const browserSync = require('browser-sync').create();
 
 sass.compiler = require('node-sass');
 
+gulp.task('brows',()=>{
+  return gulp.src('./sass/test.scss')
+  .pipe(sass().on('error', sass.logError))
+  .pipe(gulp.dest('style'))
+  .pipe(browserSync.stream());
+})
 
-gulp.task('default', ()=>{
+gulp.task('typeS', ()=>{
   return tsProject.src()
   .pipe(tsProject())
   .js.pipe(gulp.dest('dist'));
@@ -22,7 +29,7 @@ gulp.task('sass', ()=>{
 });
 
 gulp.task('auto', () =>{
-  return gulp.src('dist/test.css')
+  return gulp.src('autopre/test.css')
   .pipe(autoprefixer({
       cascade: false
   }))
@@ -36,3 +43,8 @@ gulp.task('minify-css', ()=>{
   .pipe(rename({ suffix: '.min' }))
   .pipe(gulp.dest('dist'));
 })
+
+
+
+
+gulp.task('default', gulp.parallel('brows','typeS','sass','auto','minify-css'));
