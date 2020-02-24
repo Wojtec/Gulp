@@ -2,8 +2,9 @@
   "name": "gulp-pill",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "gulpfile.js",
   "scripts": {
+    "gulp": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,5 +27,8 @@
     "gulp-typescript": "^6.0.0-alpha.1",
     "node-sass": "^4.13.1",
     "typescript": "^3.8.2"
+  },
+  "dependencies": {
+    "run-task": "^1.3.0"
   }
 }

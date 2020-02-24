@@ -9,11 +9,13 @@ const browserSync = require('browser-sync').create();
 
 sass.compiler = require('node-sass');
 
+
 gulp.task('brows',()=>{
-  return gulp.src('./sass/test.scss')
+  return gulp.src('src/**/*.scss')
+  .pipe(browserSync.stream())
   .pipe(sass().on('error', sass.logError))
-  .pipe(gulp.dest('style'))
-  .pipe(browserSync.stream());
+  .pipe(gulp.dest('dist'));
+
 })
 
 gulp.task('typeS', ()=>{
@@ -23,28 +25,37 @@ gulp.task('typeS', ()=>{
 });
 
 gulp.task('sass', ()=>{
-  return gulp.src('./sass/test.scss')
+  return gulp.src('src/**/*.scss')
+  .pipe(browserSync.stream())
   .pipe(sass().on('error', sass.logError))
   .pipe(gulp.dest('dist'));
 });
 
 gulp.task('auto', () =>{
-  return gulp.src('autopre/test.css')
+  return gulp.src('dist/**/*.css')
+  .pipe(browserSync.stream())
   .pipe(autoprefixer({
       cascade: false
   }))
-  .pipe(gulp.dest('autopre'))
+  .pipe(gulp.dest('dist'))
 
 });
 
 gulp.task('minify-css', ()=>{
-  return gulp.src('autopre/test.css')
+  return gulp.src('dist/**/*.css')
+  .pipe(browserSync.stream())
   .pipe(cleanCss({compability: 'ie8'}))
   .pipe(rename({ suffix: '.min' }))
   .pipe(gulp.dest('dist'));
 })
 
+gulp.task('hi', (done)=>{
 
+  console.log('hello');
+  done();
+})
 
+gulp.task('default', gulp.parallel('hi','brows','typeS','sass','auto','minify-css'));
+ 
 
-gulp.task('default', gulp.parallel('brows','typeS','sass','auto','minify-css'));
+  
